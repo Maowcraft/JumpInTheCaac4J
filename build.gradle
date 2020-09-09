@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group = 'maowcraft'
+version = '1.0.0'
+archivesBaseName = 'jumpinthecaac'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'net.java.dev.jna', name: 'jna', version: '5.6.0'
+    compile group: 'net.java.dev.jna', name: 'jna-platform', version: '5.6.0'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'maowcraft.jumpinthecaac.Main'
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
